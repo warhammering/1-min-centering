@@ -74,8 +74,10 @@ function startBreathing() {
 					circle.style.backgroundColor = 'blue'; // Transition to blue halfway through inhale
 				}
 			} else {
+				// Switch to exhale phase
 				currentPhase = 'exhale';
-				countdownTime = 7; // Start exhale from 7
+				countdownTime = 7; // Set countdown to start from 7 for exhale
+				countdown.textContent = countdownTime; // Immediately display 7
 				actionText.textContent = 'Breathe Out';
 				circle.style.backgroundColor = 'lightgreen'; // Start with light green
 				circle.style.transform = 'scale(0.6)'; // Contract circle for exhale
@@ -94,6 +96,7 @@ function startBreathing() {
 					circle.style.backgroundColor = 'green'; // Transition to green halfway through exhale
 				}
 			} else {
+				// Complete a round
 				round++;
 				roundCounter.textContent = `Round ${round}/${maxRounds}`;
 
@@ -104,6 +107,7 @@ function startBreathing() {
 					return;
 				}
 
+				// Switch back to inhale phase
 				currentPhase = 'inhale';
 				countdownTime = 1; // Start inhale from 1 again
 				actionText.textContent = 'Breathe In';
