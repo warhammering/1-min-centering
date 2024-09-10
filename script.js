@@ -25,10 +25,29 @@ startStopButton.addEventListener('click', () => {
 	}
 });
 
-// Toggle dark/light theme
+// Toggle dark/light theme with localStorage to remember the user's preference
 toggleTheme.addEventListener('change', () => {
 	document.body.classList.toggle('dark-mode');
+
+	// Save theme preference in localStorage
+	if (document.body.classList.contains('dark-mode')) {
+		localStorage.setItem('theme', 'dark');
+	} else {
+		localStorage.setItem('theme', 'light');
+	}
 });
+
+// On page load, check if user has a stored theme preference
+window.onload = () => {
+	const savedTheme = localStorage.getItem('theme');
+	if (savedTheme === 'dark') {
+		document.body.classList.add('dark-mode');
+		toggleTheme.checked = true; // Ensure the toggle is in the right position
+	} else {
+		document.body.classList.remove('dark-mode');
+		toggleTheme.checked = false; // Ensure the toggle is in the right position
+	}
+};
 
 function startBreathing() {
 	isRunning = true;

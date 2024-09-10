@@ -186,19 +186,62 @@ h1 {
 	box-shadow: 0 4px 10px rgba(255, 95, 109, 0.5);
 }
 
-/* Theme toggle */
+/* Theme toggle switch */
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 60px;
+	height: 34px;
+	margin: 0 10px; /* To adjust the spacing between 🌞 and 🌙 */
+}
+
+.switch input {
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+.slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #ccc;
+	transition: 0.4s;
+	border-radius: 34px;
+}
+
+.slider:before {
+	position: absolute;
+	content: '';
+	height: 26px;
+	width: 26px;
+	left: 4px;
+	bottom: 4px;
+	background-color: white;
+	transition: 0.4s;
+	border-radius: 50%;
+}
+
+input:checked + .slider {
+	background-color: #2196f3; /* Color when dark mode is enabled */
+}
+
+input:checked + .slider:before {
+	transform: translateX(26px); /* Move the toggle to the right */
+}
+
+/* Emoji styling */
 .theme-toggle {
-	position: fixed;
-	bottom: 20px;
-	left: 20px;
+	position: fixed; /* Fixed position */
+	bottom: 20px; /* 20px from the bottom of the screen */
+	left: 20px; /* 20px from the left side of the screen */
 	display: flex;
 	align-items: center;
 	font-size: 24px;
-	color: #1a1a1a;
-}
-
-.dark-mode .theme-toggle {
-	color: #e5e5e5;
+	z-index: 1000; /* Ensures the toggle is above other content */
 }
 
 /* Round Counter */
