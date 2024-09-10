@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>1-Min Centering</title>
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<body>
+		<div class="container">
+			<!-- Apply the glassmorphism effect to the card -->
+			<div class="card" id="tiltCard">
+				<h1>1-Minute Centering</h1>
+
+				<!-- Action text -->
+				<div class="action-text" id="actionText">Breathe In</div>
+
+				<!-- Progress Circle -->
+				<div class="progress-circle">
+					<div id="circle"></div>
+					<div class="countdown" id="countdown">1</div>
+				</div>
+
+				<!-- Start/Stop Button -->
+				<button id="startStopButton">Start</button>
+			</div>
+
+			<!-- New container to hold toggle switch and round counter -->
+			<div class="controls">
+				<!-- Toggle switch with emojis -->
+				<div class="theme-toggle">
+					🌞
+					<label class="switch">
+						<input type="checkbox" id="toggleTheme" />
+						<span class="slider round"></span>
+					</label>
+					🌙
+				</div>
+
+				<!-- Round Counter -->
+				<div class="round-counter" id="roundCounter">Round 0/5</div>
+			</div>
+		</div>
+
+		<!-- VanillaTilt Library -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+
+		<script src="script.js"></script>
+	</body>
+</html>
