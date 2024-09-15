@@ -11,6 +11,7 @@ const countdown = document.getElementById('countdown');
 const startStopButton = document.getElementById('startStopButton');
 const roundCounter = document.getElementById('roundCounter');
 const toggleTheme = document.getElementById('toggleTheme');
+const logo = document.getElementById('logo');
 
 // Load the sounds
 const breathInSound = new Audio('sounds/breath_in.ogg');
@@ -29,6 +30,13 @@ startStopButton.addEventListener('click', () => {
 toggleTheme.addEventListener('change', () => {
 	document.body.classList.toggle('dark-mode');
 
+	// Change the logo based on theme
+	if (document.body.classList.contains('dark-mode')) {
+		logo.src = 'logo/Masterschool-logo-White.png';
+	} else {
+		logo.src = 'logo/Masterschool-logo-Soft black.png';
+	}
+
 	// Save theme preference in localStorage
 	if (document.body.classList.contains('dark-mode')) {
 		localStorage.setItem('theme', 'dark');
@@ -43,9 +51,11 @@ window.onload = () => {
 	if (savedTheme === 'dark') {
 		document.body.classList.add('dark-mode');
 		toggleTheme.checked = true; // Ensure the toggle is in the right position
+		logo.src = 'logo/Masterschool-logo-White.png';
 	} else {
 		document.body.classList.remove('dark-mode');
 		toggleTheme.checked = false; // Ensure the toggle is in the right position
+		logo.src = 'logo/Masterschool-logo-Soft black.png';
 	}
 };
 
@@ -57,7 +67,7 @@ function startBreathing() {
 	currentPhase = 'inhale';
 	actionText.textContent = 'Breathe In';
 	countdown.textContent = countdownTime;
-	circle.style.backgroundColor = 'lightblue'; // Start with light blue
+	circle.style.backgroundColor = '#D8FFD0'; // Light Green
 	circle.style.transform = 'scale(1.2)'; // Expand circle for inhale
 	circle.style.transition = 'transform 5s linear, background-color 5s linear'; // Smooth transition for inhale
 
@@ -71,7 +81,7 @@ function startBreathing() {
 				countdownTime++;
 				countdown.textContent = countdownTime;
 				if (countdownTime === 3) {
-					circle.style.backgroundColor = 'blue'; // Transition to blue halfway through inhale
+					circle.style.backgroundColor = '#9EFF8A'; // Transition to Bright Green halfway through inhale
 				}
 			} else {
 				// Switch to exhale phase
@@ -79,7 +89,7 @@ function startBreathing() {
 				countdownTime = 7; // Set countdown to start from 7 for exhale
 				countdown.textContent = countdownTime; // Immediately display 7
 				actionText.textContent = 'Breathe Out';
-				circle.style.backgroundColor = 'lightgreen'; // Start with light green
+				circle.style.backgroundColor = '#C0AFEB'; // Start with Lilac
 				circle.style.transform = 'scale(0.6)'; // Contract circle for exhale
 				circle.style.transition =
 					'transform 7s linear, background-color 7s linear'; // Smooth transition for exhale
@@ -93,7 +103,7 @@ function startBreathing() {
 				countdownTime--;
 				countdown.textContent = countdownTime;
 				if (countdownTime === 4) {
-					circle.style.backgroundColor = 'green'; // Transition to green halfway through exhale
+					circle.style.backgroundColor = '#FFC8F0'; // Transition to Pink halfway through exhale
 				}
 			} else {
 				// Complete a round
@@ -111,8 +121,8 @@ function startBreathing() {
 				currentPhase = 'inhale';
 				countdownTime = 1; // Start inhale from 1 again
 				actionText.textContent = 'Breathe In';
-				circle.style.backgroundColor = 'lightblue'; // Start with light blue
-				circle.style.transform = 'scale(1.3)'; // Expand circle again
+				circle.style.backgroundColor = '#D8FFD0'; // Light Green
+				circle.style.transform = 'scale(1.2)'; // Expand circle again
 				circle.style.transition =
 					'transform 5s linear, background-color 5s linear'; // Smooth transition for inhale
 
@@ -129,7 +139,13 @@ function stopBreathing() {
 	clearInterval(countdownInterval);
 	startStopButton.textContent = 'Start';
 	startStopButton.classList.remove('stop');
-	circle.style.transform = 'scale(1)'; // Reset the circle size
+	circle.style.transform = 'scale(1)';
+	countdown.textContent = '1';
+	actionText.textContent = 'Breathe In';
+	currentPhase = 'inhale';
+	countdownTime = 1;
+	round = 0;
+	roundCounter.textContent = `Round ${round}/${maxRounds}`;
 }
 
 // Initialize VanillaTilt on the card element

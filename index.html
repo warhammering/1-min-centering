@@ -11,6 +11,18 @@
 		<!-- Link to the manifest.json file -->
 		<link rel="manifest" href="manifest.json" />
 
+		<!-- Favicon -->
+		<link
+			rel="icon"
+			href="logo/Masterschool-logomark-black_on_white.png"
+			sizes="any"
+			type="image/png"
+		/>
+		<link
+			rel="apple-touch-icon"
+			href="logo/Masterschool-logomark-black_on_white.png"
+		/>
+
 		<!-- Register the service worker -->
 		<script>
 			if ('serviceWorker' in navigator) {
@@ -29,6 +41,15 @@
 		</script>
 	</head>
 	<body>
+		<!-- Theme Toggle Switch -->
+		<div class="theme-toggle">
+			<label class="switch">
+				<input type="checkbox" id="toggleTheme" />
+				<span class="slider round"></span>
+			</label>
+		</div>
+
+		<!-- Main Container -->
 		<div class="container">
 			<!-- Apply the glassmorphism effect to the card -->
 			<div class="card" id="tiltCard">
@@ -47,21 +68,17 @@
 				<button id="startStopButton">Start</button>
 			</div>
 
-			<!-- New container to hold toggle switch and round counter -->
-			<div class="controls">
-				<!-- Toggle switch with emojis -->
-				<div class="theme-toggle">
-					🌞
-					<label class="switch">
-						<input type="checkbox" id="toggleTheme" />
-						<span class="slider round"></span>
-					</label>
-					🌙
-				</div>
+			<!-- Round Counter -->
+			<div class="round-counter" id="roundCounter">Round 0/5</div>
+		</div>
 
-				<!-- Round Counter -->
-				<div class="round-counter" id="roundCounter">Round 0/5</div>
-			</div>
+		<!-- Logo -->
+		<div class="logo-container">
+			<img
+				id="logo"
+				src="logo/Masterschool-logo-Soft black.png"
+				alt="Logo"
+			/>
 		</div>
 
 		<!-- VanillaTilt Library -->

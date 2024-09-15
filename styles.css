@@ -5,20 +5,76 @@
 	box-sizing: border-box;
 }
 
-body {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
-	font-family: Arial, sans-serif;
-	background-image: linear-gradient(to top, #fdcbf1 0%, #e6dee9 100%);
-	transition: background-image 0.5s;
-	color: #333; /* Ensure good contrast for the default mode */
+/* Import the fonts */
+@font-face {
+	font-family: 'Founders Grotesk';
+	src: url('fonts/FoundersGrotesk-Medium.woff2') format('woff2'),
+		url('fonts/FoundersGrotesk-Medium.woff') format('woff');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
 }
 
+@font-face {
+	font-family: 'Founders Grotesk';
+	src: url('fonts/FoundersGrotesk-Regular.woff2') format('woff2'),
+		url('fonts/FoundersGrotesk-Regular.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'FreightText Pro';
+	src: url('fonts/FreightTextProBook-Regular.woff2') format('woff2'),
+		url('fonts/FreightTextProBook-Regular.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'FreightText Pro';
+	src: url('fonts/FreightTextProBold-Regular.woff2') format('woff2'),
+		url('fonts/FreightTextProBold-Regular.woff') format('woff');
+	font-weight: bold;
+	font-style: normal;
+	font-display: swap;
+}
+
+/* Apply fonts */
+body {
+	font-family: 'Founders Grotesk', Arial, sans-serif;
+}
+
+h1,
+.action-text,
+.countdown,
+#startStopButton {
+	font-family: 'Founders Grotesk', Arial, sans-serif;
+	text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+}
+
+.round-counter {
+	font-family: 'FreightText Pro', serif;
+}
+
+/* Body Styling */
+body {
+	display: flex;
+	flex-direction: column; /* Ensures vertical stacking */
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	background-image: linear-gradient(to top, #f5f5f0, #ffffff);
+	transition: background-image 0.5s;
+	color: #0a0a0a;
+}
+
+/* Dark mode */
 .dark-mode {
-	background-image: linear-gradient(to right, #2c3e50 0%, #000000 100%);
-	color: #e5e5e5; /* Light gray for text in dark mode to meet AAA contrast */
+	background-image: linear-gradient(to right, #0a0a0a, #193325);
+	color: #f5f5f0;
 }
 
 /* Glassmorphism card effect */
@@ -35,8 +91,8 @@ body {
 	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 	background-image: linear-gradient(
 		145deg,
-		rgba(255, 0, 150, 0.1),
-		rgba(0, 255, 200, 0.1)
+		rgba(189, 235, 175, 0.2),
+		rgba(254, 255, 200, 0.2)
 	);
 	transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -46,17 +102,14 @@ body {
 	text-align: center;
 	padding: 20px;
 	position: relative;
+	/* Removed width: 100%; to prevent stretching */
 }
 
 /* Title */
 h1 {
 	margin-bottom: 60px;
 	font-size: 24px;
-	color: #1a1a1a;
-}
-
-.dark-mode h1 {
-	color: #e5e5e5;
+	color: inherit;
 }
 
 /* Action text */
@@ -64,11 +117,7 @@ h1 {
 	margin-bottom: 30px;
 	font-size: 24px;
 	font-weight: bold;
-	color: #1a1a1a;
-}
-
-.dark-mode .action-text {
-	color: #e5e5e5;
+	color: inherit;
 }
 
 /* Progress circle */
@@ -77,14 +126,8 @@ h1 {
 	width: 200px;
 	height: 200px;
 	margin: auto;
-	box-shadow: inset 5px 5px 15px rgba(0, 0, 0, 0.2),
-		/* Inner shadow for depth */ 0 10px 20px rgba(0, 0, 0, 0.2); /* Outer shadow for lifted effect */
 	border-radius: 50%;
-	background: radial-gradient(
-		circle at 30% 30%,
-		rgba(255, 255, 255, 0.7),
-		rgba(0, 114, 255, 0.5)
-	);
+	background: radial-gradient(circle at 30% 30%, #ffc8f0, #c0afeb);
 	transition: transform 5s ease, background-color 2s ease;
 }
 
@@ -93,13 +136,9 @@ h1 {
 	width: 100%;
 	height: 100%;
 	border-radius: 50%;
-	background: radial-gradient(
-		circle at 50% 50%,
-		#004080,
-		/* Darker blue */ #001a33 70%
-	); /* Adjusted background for better contrast */
+	background: radial-gradient(circle at 50% 50%, #009b50, #193325);
 	box-shadow: inset 5px 5px 15px rgba(0, 0, 0, 0.2),
-		/* Inner shadow for depth */ 0 5px 15px rgba(0, 0, 0, 0.2); /* Outer shadow for depth */
+		0 5px 15px rgba(0, 0, 0, 0.2);
 	transition: transform 5s ease, background-color 2s ease;
 }
 
@@ -113,12 +152,12 @@ h1 {
 	font-size: 48px;
 	font-weight: bold;
 	transform: translateY(-50%);
-	color: white; /* Changed from #1a1a1a to white for better contrast */
-	text-shadow: 2px 2px 3px rgba(0, 0, 0); /* Increased shadow for better contrast */
+	color: #ffffff;
+	text-shadow: 2px 2px 3px rgba(0, 0, 0);
 }
 
 .dark-mode .countdown {
-	color: #e5e5e5;
+	color: #ffffff;
 	text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
 }
 
@@ -127,72 +166,58 @@ h1 {
 	margin-top: 40px;
 	padding: 15px 30px;
 	font-size: 24px;
-	background: linear-gradient(
-		to right,
-		#00c851,
-		#007e33
-	); /* Green gradient for start */
-	color: white;
+	background: linear-gradient(to right, #009b50, #9eff8a);
+	color: #ffffff;
 	border: none;
 	border-radius: 50px;
 	cursor: pointer;
 	width: 100%;
-	box-shadow: 0 4px 15px rgba(0, 114, 255, 0.4); /* Button shadow for depth */
+	box-shadow: 0 4px 15px rgba(0, 114, 255, 0.4);
 	transition: all 0.4s ease;
 }
 
 #startStopButton:hover {
-	background: linear-gradient(
-		to right,
-		#007e33,
-		#00c851
-	); /* Inverted gradient on hover */
+	background: linear-gradient(to right, #9eff8a, #009b50);
 	box-shadow: 0 6px 20px rgba(0, 114, 255, 0.6);
 	transform: scale(1.05);
 }
 
 #startStopButton:active {
-	background: linear-gradient(
-		to right,
-		#0059b3,
-		#004080
-	); /* Blue for active state */
+	background: linear-gradient(to right, #0059b3, #004080);
 	transform: scale(0.98);
 	box-shadow: 0 4px 10px rgba(0, 114, 255, 0.5);
 }
 
 #startStopButton.stop {
-	background: linear-gradient(
-		to right,
-		#ff5f6d,
-		#ffc371
-	); /* Red gradient for stop */
+	background: linear-gradient(to right, #ffc8f0, #c0afeb);
 	box-shadow: 0 4px 15px rgba(255, 95, 109, 0.4);
 }
 
 #startStopButton.stop:hover {
-	background: linear-gradient(to right, #ffc371, #ff5f6d);
+	background: linear-gradient(to right, #c0afeb, #ffc8f0);
 	box-shadow: 0 6px 20px rgba(255, 95, 109, 0.6);
 	transform: scale(1.05);
 }
 
 #startStopButton.stop:active {
-	background: linear-gradient(
-		to right,
-		#b33939,
-		#e55039
-	); /* Darker red for active stop */
+	background: linear-gradient(to right, #b33939, #e55039);
 	transform: scale(0.98);
 	box-shadow: 0 4px 10px rgba(255, 95, 109, 0.5);
 }
 
 /* Theme toggle switch */
+.theme-toggle {
+	position: fixed;
+	top: 20px;
+	right: 20px;
+	z-index: 1000;
+}
+
 .switch {
 	position: relative;
 	display: inline-block;
 	width: 60px;
 	height: 34px;
-	margin: 0 10px; /* To adjust the spacing between 🌞 and 🌙 */
 }
 
 .switch input {
@@ -208,7 +233,7 @@ h1 {
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background-color: #ccc;
+	background-color: #d4d4c5;
 	transition: 0.4s;
 	border-radius: 34px;
 }
@@ -220,42 +245,44 @@ h1 {
 	width: 26px;
 	left: 4px;
 	bottom: 4px;
-	background-color: white;
+	background-color: #ffffff;
 	transition: 0.4s;
 	border-radius: 50%;
 }
 
 input:checked + .slider {
-	background-color: #2196f3; /* Color when dark mode is enabled */
+	background-color: #393939;
 }
 
 input:checked + .slider:before {
-	transform: translateX(26px); /* Move the toggle to the right */
+	transform: translateX(26px);
 }
 
-/* Emoji styling */
-.theme-toggle {
-	position: fixed; /* Fixed position */
-	bottom: 20px; /* 20px from the bottom of the screen */
-	left: 20px; /* 20px from the left side of the screen */
-	display: flex;
-	align-items: center;
-	font-size: 24px;
-	z-index: 1000; /* Ensures the toggle is above other content */
+/* Logo styling */
+.logo-container {
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	z-index: 1000;
+}
+
+.logo-container img {
+	width: 200px;
+	height: auto;
 }
 
 /* Round Counter */
 .round-counter {
 	position: fixed;
 	bottom: 20px;
-	right: 20px;
+	left: 20px;
 	font-size: 14px;
 	font-weight: bold;
-	color: #1a1a1a;
+	color: inherit;
 }
 
 .dark-mode .round-counter {
-	color: #e5e5e5;
+	color: inherit;
 }
 
 /* Media queries for smaller screens */
@@ -277,8 +304,8 @@ input:checked + .slider:before {
 		font-size: 36px;
 	}
 
-	.theme-toggle {
-		font-size: 18px;
+	.logo-container img {
+		width: 80px;
 	}
 
 	.round-counter {
