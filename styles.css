@@ -5,7 +5,7 @@
 	box-sizing: border-box;
 }
 
-/* Import the fonts */
+/* Font imports */
 @font-face {
 	font-family: 'Founders Grotesk';
 	src: url('fonts/FoundersGrotesk-Medium.woff2') format('woff2'),
@@ -42,21 +42,41 @@
 	font-display: swap;
 }
 
-/* Apply fonts */
-body {
-	font-family: 'Founders Grotesk', Arial, sans-serif;
-}
+/* Variables */
+:root {
+	--primary-font: 'Founders Grotesk', Arial, sans-serif;
+	--secondary-font: 'FreightText Pro', serif;
+	--text-shadow: 0.125rem 0.125rem 0.1875rem rgba(0, 0, 0, 0.3);
+	--light-gradient: linear-gradient(to left, #f5f5f0, rgb(212, 212, 197));
+	--dark-gradient: linear-gradient(to right, #0a0a0a, #193325);
+	--card-padding: 3.75rem;
+	--card-max-width: 21.875rem;
 
-h1,
-.action-text,
-.countdown,
-#startStopButton {
-	font-family: 'Founders Grotesk', Arial, sans-serif;
-	text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
-}
+	/* Updated button colors */
+	--button-gradient: linear-gradient(to right, #009b50, #9eff8a);
+	--button-hover-gradient: linear-gradient(to right, #9eff8a, #009b50);
+	--button-active-gradient: linear-gradient(to right, #0059b3, #004080);
 
-.round-counter {
-	font-family: 'FreightText Pro', serif;
+	--button-stop-gradient: linear-gradient(to right, #ffc8f0, #c0afeb);
+	--button-stop-hover-gradient: linear-gradient(to right, #c0afeb, #ffc8f0);
+	--button-stop-active-gradient: linear-gradient(to right, #b33939, #e55039);
+
+	/* Light mode button colors */
+	--button-light-gradient: linear-gradient(to right, #9eb7aa, #d4d4c5);
+	--button-light-hover-gradient: linear-gradient(to right, #b4cac1, #eaeae2);
+	--button-light-active-gradient: linear-gradient(to right, #6c8278, #9eb7aa);
+
+	--button-light-stop-gradient: linear-gradient(to right, #425b4d, #193325);
+	--button-light-stop-hover-gradient: linear-gradient(
+		to right,
+		#2b3e34,
+		#285c41
+	);
+	--button-light-stop-active-gradient: linear-gradient(
+		to right,
+		#193325,
+		#0a0a0a
+	);
 }
 
 /* Body Styling */
@@ -66,60 +86,67 @@ body {
 	justify-content: center;
 	align-items: center;
 	min-height: 100vh;
-	background-image: linear-gradient(to top, #f5f5f0, #ffc8f0);
+	background-image: var(--light-gradient);
 	transition: background-image 0.5s;
 	color: #0a0a0a;
-	font-family: 'Founders Grotesk', Arial, sans-serif;
+	font-family: var(--primary-font);
 }
 
 /* Dark mode */
 .dark-mode {
-	background-image: linear-gradient(to right, #0a0a0a, #193325);
+	background-image: var(--dark-gradient);
 	color: #f5f5f0;
 }
 
-/* Title h1 centered at the top (outside the card) */
+/* Common styles for text elements */
+h1,
+.action-text,
+.countdown,
+#startStopButton {
+	font-family: var(--primary-font);
+	text-shadow: var(--text-shadow);
+}
+
+/* Title h1 */
 h1 {
 	position: absolute;
-	top: 50px; /* Position 20px from the top */
+	top: 3.125rem;
 	left: 50%;
 	transform: translateX(-50%);
-	font-size: 36px;
+	font-size: 2.25rem;
 	font-weight: bold;
 	color: inherit;
-	text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
-	z-index: 10; /* Ensure it stays above other elements */
+	z-index: 10;
 }
 
 .dark-mode h1 {
-	text-shadow: 2px 2px 3px rgba(255, 255, 255, 0.308); /* White text shadow */
+	text-shadow: 0.125rem 0.125rem 0.1875rem rgba(255, 255, 255, 0.308);
 }
 
 /* Glassmorphism card effect */
 .card {
-	backdrop-filter: blur(15px) saturate(150%);
-	-webkit-backdrop-filter: blur(15px) saturate(150%);
+	backdrop-filter: blur(0.9375rem) saturate(1.5);
+	-webkit-backdrop-filter: blur(0.9375rem) saturate(1.5);
 	background: rgba(255, 255, 255, 0.1);
-	border-radius: 12px;
-	border: 1px solid rgba(255, 255, 255, 0.2);
-	padding: 60px;
+	border-radius: 0.75rem;
+	border: 0.0625rem solid rgba(255, 255, 255, 0.2);
+	padding: var(--card-padding);
 	width: 100%;
-	max-width: 350px;
+	max-width: var(--card-max-width);
 	text-align: center;
-	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+	box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.5);
 	background-image: linear-gradient(
 		145deg,
 		rgba(180, 180, 176, 0.3),
-		rgba(204, 128, 176, 0.3)
+		rgba(212, 212, 176, 0.3)
 	);
 	transition: transform 0.3s ease, box-shadow 0.3s ease,
 		background-image 0.5s ease;
 }
 
-/* Dark mode - only the differences */
 .dark-mode .card {
 	background: rgba(0, 0, 0, 0.1);
-	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-color: rgba(0, 0, 0, 0.2);
 	background-image: linear-gradient(
 		145deg,
 		rgba(120, 120, 120, 0.3),
@@ -130,14 +157,14 @@ h1 {
 /* Main container */
 .container {
 	text-align: center;
-	padding: 20px;
+	padding: 1.25rem;
 	position: relative;
 }
 
 /* Action text */
 .action-text {
-	margin-bottom: 30px;
-	font-size: 24px;
+	margin-bottom: 3.75rem;
+	font-size: 2rem;
 	font-weight: bold;
 	color: inherit;
 }
@@ -145,9 +172,10 @@ h1 {
 /* Progress circle */
 .progress-circle {
 	position: relative;
-	width: 200px;
-	height: 200px;
+	width: 12rem;
+	height: 12rem;
 	margin: auto;
+	margin-bottom: 2.5rem;
 	border-radius: 50%;
 	background: radial-gradient(circle at 30% 30%, #ffc8f0, #c0afeb);
 	transition: transform 5s ease, background-color 2s ease;
@@ -159,8 +187,8 @@ h1 {
 	height: 100%;
 	border-radius: 50%;
 	background: radial-gradient(circle at 50% 50%, #009b50, #193325);
-	box-shadow: inset 5px 5px 15px rgba(0, 0, 0, 0.2),
-		0 5px 15px rgba(0, 0, 0, 0.2);
+	box-shadow: inset 0.3125rem 0.3125rem 0.9375rem rgba(0, 0, 0, 0.2),
+		0 0.3125rem 0.9375rem rgba(0, 0, 0, 0.2);
 	transition: transform 5s ease, background-color 2s ease;
 }
 
@@ -171,75 +199,101 @@ h1 {
 	left: 0;
 	right: 0;
 	text-align: center;
-	font-size: 48px;
+	font-size: 3rem;
 	font-weight: bold;
 	transform: translateY(-50%);
 	color: #ffffff;
-	text-shadow: 2px 2px 3px rgba(0, 0, 0);
+	text-shadow: 0.125rem 0.125rem 0.1875rem rgba(0, 0, 0, 1);
 }
 
 .dark-mode .countdown {
-	color: #ffffff;
-	text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+	text-shadow: 0.125rem 0.125rem 0.375rem rgba(0, 0, 0, 0.8);
 }
 
-/* Gradient Button - Start/Stop */
+/* Updated Gradient Button - Start/Stop */
 #startStopButton {
-	margin-top: 40px;
-	padding: 15px 30px;
-	font-size: 24px;
-	background: linear-gradient(to right, #009b50, #9eff8a);
+	margin-top: 2.5rem;
+	padding: 0.9375rem 1.875rem;
+	font-size: 1.5rem;
+	background: var(--button-gradient);
 	color: #ffffff;
 	border: none;
-	border-radius: 50px;
+	border-radius: 3.125rem;
 	cursor: pointer;
 	width: 100%;
-	box-shadow: 0 4px 15px rgba(0, 114, 255, 0.4);
+	box-shadow: 0 0.25rem 0.9375rem rgba(0, 114, 255, 0.4);
 	transition: all 0.4s ease;
 }
 
 #startStopButton:hover {
-	background: linear-gradient(to right, #9eff8a, #009b50);
-	box-shadow: 0 6px 20px rgba(0, 114, 255, 0.6);
+	background: var(--button-hover-gradient);
+	box-shadow: 0 0.375rem 1.25rem rgba(0, 114, 255, 0.6);
 	transform: scale(1.05);
 }
 
 #startStopButton:active {
-	background: linear-gradient(to right, #0059b3, #004080);
+	background: var(--button-active-gradient);
 	transform: scale(0.98);
-	box-shadow: 0 4px 10px rgba(0, 114, 255, 0.5);
+	box-shadow: 0 0.25rem 0.625rem rgba(0, 114, 255, 0.5);
 }
 
 #startStopButton.stop {
-	background: linear-gradient(to right, #ffc8f0, #c0afeb);
-	box-shadow: 0 4px 15px rgba(255, 95, 109, 0.4);
+	background: var(--button-stop-gradient);
+	box-shadow: 0 0.25rem 0.9375rem rgba(255, 95, 109, 0.4);
 }
 
 #startStopButton.stop:hover {
-	background: linear-gradient(to right, #c0afeb, #ffc8f0);
-	box-shadow: 0 6px 20px rgba(255, 95, 109, 0.6);
+	background: var(--button-stop-hover-gradient);
+	box-shadow: 0 0.375rem 1.25rem rgba(255, 95, 109, 0.6);
 	transform: scale(1.05);
 }
 
 #startStopButton.stop:active {
-	background: linear-gradient(to right, #b33939, #e55039);
+	background: var(--button-stop-active-gradient);
 	transform: scale(0.98);
-	box-shadow: 0 4px 10px rgba(255, 95, 109, 0.5);
+	box-shadow: 0 0.25rem 0.625rem rgba(255, 95, 109, 0.5);
+}
+
+/* Light mode button styles */
+body:not(.dark-mode) #startStopButton {
+	background: var(--button-light-gradient);
+	color: #0a0a0a; /* Added text color for light mode */
+}
+
+body:not(.dark-mode) #startStopButton:hover {
+	background: var(--button-light-hover-gradient);
+}
+
+body:not(.dark-mode) #startStopButton:active {
+	background: var(--button-light-active-gradient);
+}
+
+body:not(.dark-mode) #startStopButton.stop {
+	background: var(--button-light-stop-gradient);
+	color: #f5f5f0; /* Added text color for light mode stop button */
+}
+
+body:not(.dark-mode) #startStopButton.stop:hover {
+	background: var(--button-light-stop-hover-gradient);
+}
+
+body:not(.dark-mode) #startStopButton.stop:active {
+	background: var(--button-light-stop-active-gradient);
 }
 
 /* Theme toggle switch */
 .theme-toggle {
 	position: fixed;
-	top: 20px;
-	right: 20px;
+	top: 1.25rem;
+	right: 1.25rem;
 	z-index: 1000;
 }
 
 .switch {
 	position: relative;
 	display: inline-block;
-	width: 60px;
-	height: 34px;
+	width: 3.75rem;
+	height: 2.125rem;
 }
 
 .switch input {
@@ -257,16 +311,16 @@ h1 {
 	bottom: 0;
 	background-color: #d4d4c5;
 	transition: 0.4s;
-	border-radius: 34px;
+	border-radius: 2.125rem;
 }
 
 .slider:before {
 	position: absolute;
 	content: '';
-	height: 26px;
-	width: 26px;
-	left: 4px;
-	bottom: 4px;
+	height: 1.625rem;
+	width: 1.625rem;
+	left: 0.25rem;
+	bottom: 0.25rem;
 	background-color: #ffffff;
 	transition: 0.4s;
 	border-radius: 50%;
@@ -277,66 +331,67 @@ input:checked + .slider {
 }
 
 input:checked + .slider:before {
-	transform: translateX(26px);
+	transform: translateX(1.625rem);
 }
 
 /* Logo styling */
 .logo-container {
 	position: fixed;
-	bottom: 20px;
-	right: 20px;
+	bottom: 1.25rem;
+	right: 1.25rem;
 	z-index: 1000;
 }
 
 .logo-container img {
-	width: 200px;
+	width: 12.5rem;
 	height: auto;
 }
 
 /* Round Counter */
 .round-counter {
 	position: fixed;
-	bottom: 20px;
-	left: 20px;
-	font-size: 14px;
+	bottom: 1.25rem;
+	left: 1.25rem;
+	font-size: 0.875rem;
 	font-weight: bold;
 	color: inherit;
-}
-
-.dark-mode .round-counter {
-	color: inherit;
+	font-family: var(--secondary-font);
 }
 
 /* Media queries for smaller screens */
-@media (max-width: 600px) {
+@media (max-width: 37.5rem) {
 	.container {
 		width: 90%;
 	}
 
 	h1 {
-		font-size: 24px;
-		top: 7%;
-		padding-bottom: 70px;
+		position: relative;
+		top: 0;
+		font-size: 1.5rem;
+		padding-bottom: 1.25rem;
+		left: 0;
+		transform: none;
+		text-align: center;
 	}
 
 	.progress-circle {
-		width: 150px;
-		height: 150px;
+		width: 9.375rem;
+		height: 9.375rem;
 	}
 
 	.action-text {
-		font-size: 20px;
+		font-size: 1.25rem;
 	}
 
 	.countdown {
-		font-size: 36px;
+		font-size: 2.25rem;
 	}
 
 	.logo-container img {
-		width: 80px;
+		width: 5rem;
 	}
 
 	.round-counter {
-		font-size: 12px;
+		font-size: 0.75rem;
 	}
 }
